@@ -7,22 +7,22 @@
 
 <style>
 body {
-    background-color: #FFFFFF; /* ← БЕЛЫЙ ФОН */
+    background-color: #FFFFFF;
     font-family: Arial, sans-serif;
 }
 
 .clock {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     width: max-content;
     margin: 40px auto;
 }
 
 .card {
-    background-color: #BDBDBD; /* серые плитки — без изменений */
-    border-radius: 10px;
-    width: 130px;
-    height: 160px;
+    background-color: #BDBDBD;
+    border-radius: 12px;
+    width: 150px;     /* было 130 */
+    height: 190px;    /* было 160 */
     position: relative;
     color: #fff;
     overflow: hidden;
@@ -41,17 +41,17 @@ body {
 
 /* большие цифры */
 .number {
-    font-size: 96px;
+    font-size: 112px;     /* было 96 */
     font-weight: bold;
     text-align: center;
-    line-height: 160px;
+    line-height: 190px;   /* под новую высоту */
 }
 
 /* подпись снизу */
 .label {
     position: absolute;
-    bottom: 10px;
-    right: 12px;
+    bottom: 12px;
+    right: 14px;
     font-size: 14px;
     font-weight: bold;
     opacity: 0.9;
@@ -78,12 +78,14 @@ const days = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
 function updateClock() {
     const now = new Date();
 
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
+    document.getElementById('hours').textContent =
+        String(now.getHours()).padStart(2, '0');
 
-    document.getElementById('hours').textContent = hours;
-    document.getElementById('minutes').textContent = minutes;
-    document.getElementById('day').textContent = days[now.getDay()];
+    document.getElementById('minutes').textContent =
+        String(now.getMinutes()).padStart(2, '0');
+
+    document.getElementById('day').textContent =
+        days[now.getDay()];
 }
 
 updateClock();
