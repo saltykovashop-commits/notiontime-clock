@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Часы</title>
+
+<style>
+body {
+    background-color: #F8F8F8;
+    font-family: Arial, sans-serif;
+}
+
+.clock {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    margin: 40px auto;
+}
+
+.card {
+    background-color: #BDBDBD;
+    border-radius: 10px;
+    width: 130px;
+    height: 160px;
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* линия по центру */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.6);
+}
+
+/* большие цифры */
+.number {
+    font-size: 96px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 160px;
+}
+
+/* подпись снизу */
+.label {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="clock">
+    <div class="card">
+        <div class="number" id="hours">11</div>
+    </div>
+
+    <div class="card">
+        <div class="number" id="minutes">00</div>
+        <div class="label" id="day">ВС</div>
+    </div>
+</div>
+
+<script>
+const days = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
+
+function updateClock() {
+    const now = new Date();
+
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('day').textContent = days[now.getDay()];
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
